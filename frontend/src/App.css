@@ -1,0 +1,136 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.menu-bar {
+  position: fixed;
+  background: grey;
+  width: 100%;
+  height: 2.5%;
+}
+
+.workspace {
+  flex-grow: 1;
+  background: gray;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.files-block {
+  flex-grow: 1;
+  width: 400px;
+  display: inline-block;
+  vertical-align: middle;
+  background: gainsboro;
+  border: solid;
+  margin: 4px;
+}
+
+.block-path {
+  background-color: lightgray;
+}
+
+.sort-bar {
+  background: rgb(191, 191, 191);
+  display: flex;
+  flex-direction: row;
+}
+
+.sort-button[data-field] {
+ justify-content: flex-start;
+ color: black;
+}
+
+.field[data-field] {
+  text-align: left;
+  flex-basis: 0;
+  flex-shrink: 1;
+  min-width: 0;
+  padding-left: 5px;
+  padding-right: 0px;
+}
+
+.field[data-field="name"] {
+  flex-grow: 5;
+}
+
+.field[data-field="lastModifiedTime"] {
+  flex-grow: 2;
+}
+
+.field[data-field="size"] {
+  flex-grow: 1;
+}
+
+.sort-delete {
+  flex: 1 1 0;
+}
+
+.file-row, .file-drag-preview {
+  min-height: 20px;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  padding: 1px 0px;
+}
+
+.file-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.file-drag-preview {
+  width: max-content;
+  background: gainsboro;
+  border: 2px solid gray;
+  border-radius: 5px;
+  min-width: 150px;
+}
+
+.file-row:hover {
+  background: lightblue;
+}
+
+.selected {
+  border-width: 0;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.5);
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  padding: 0;
+}
