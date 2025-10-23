@@ -23,7 +23,7 @@ public class CommanderFileService implements FileService {
     private final Path root;
 
     public CommanderFileService(@Value("${root.directory}") String rootPath) {
-        root = Paths.get(rootPath).toAbsolutePath();
+        root = Paths.get(rootPath).toAbsolutePath().normalize();
     }
 
     @Override

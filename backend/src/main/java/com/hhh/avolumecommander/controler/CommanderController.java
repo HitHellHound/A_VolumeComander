@@ -29,7 +29,7 @@ public class CommanderController {
         return fileService.getFilesFromDirectory(directoryPath);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public List<OperationResultMessage> operateFiles(@RequestBody List<OperationMessage> operations) {
         List<OperationResultMessage> results = new ArrayList<>();
         for (OperationMessage operation: operations) {

@@ -2,6 +2,7 @@ plugins {
 	id 'java'
  	id 'org.springframework.boot' version '4.0.0-SNAPSHOT'
 	id 'io.spring.dependency-management' version '1.1.7'
+	id "com.github.node-gradle.node" version "7.1.0"
 }
 
 group = 'com.hhh'
@@ -38,3 +39,33 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+def frontendDir = file("${project.projectDir}/../frontend")
+def frontendBuildDir = file("${frontendDir}/build")
+def targetStaticDir = file("${project.projectDir}/src/main/resources/static")
+
+node {
+	download = true
+	version = "22.19.0"
+	npmVersion = "10.9.3"
+	nodeProjectDir = frontendDir
+}
+
+tasks.register('buildFrontend', NpmTask) {
+	inputs.files(fileTree("${frontendDir}/node_modules"))
+	inputs.files(fileTree("${frontendDir}/src"))
+	inputs.files(fileTree("${frontendDir}/public"))
+	inputs.file("${frontendDir}/package.json")
+
+	outputs.dir(frontendBuildDir)
+
+	dependsOn npmInstall
+	args = ['run', 'build']
+}
+
+tasks.register('copyFrontend', Copy) {
+	from buildFrontend
+	into targetStaticDir
+}
+
+processResources.dependsOn copyFrontend
